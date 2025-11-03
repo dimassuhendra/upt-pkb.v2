@@ -172,10 +172,10 @@
                             <i class="bi bi-person-fill-gear"></i> Login Admin
                         </button>
 
-                        <button type="button" data-role="petugas" class="btn btn-lg login-btn-custom w-100"
+                        <!-- <button type="button" data-role="petugas" class="btn btn-lg login-btn-custom w-100"
                             style="background-color: #ffc107; color: #333;">
                             <i class="bi bi-person-fill"></i> Login Petugas
-                        </button>
+                        </button> -->
                     </div>
                 </div>
 

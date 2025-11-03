@@ -1,6 +1,6 @@
 <?php
 // ===============================================
-// HALAMAN LAPORAN SURVEY (REFACTOR: FIX EXPORT CSV)
+// HALAMAN LAPORAN SURVEY (REFACTOR: TEMA HIJAU, FONT LATO, FONT HEADER HITAM)
 // ===============================================
 
 // *** PERBAIKAN 1: AKTIFKAN OUTPUT BUFFERING UNTUK MENCEGAH HEADER ERROR ***
@@ -236,7 +236,27 @@ function getStarRating($rating) {
     <title>Laporan Survey | UPT PKB</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
+    /* ================================================= */
+    /* Kustomisasi Nuansa Hijau dan Font Lato */
+    /* ================================================= */
+
+    /* Mendefinisikan Palet Warna Hijau dan Font */
+    :root {
+        --bs-font-sans-serif: 'Lato', sans-serif;
+        /* Warna Hijau Utama (Dark Green) */
+        --color-primary-green: #146c43;
+        /* Warna Hijau untuk Tombol/Aksi (Bootstrap Success) */
+        --color-button-green: #198754;
+        /* Warna Hijau Muda untuk Table Striped/Background */
+        --color-light-green: #d1e7dd;
+    }
+
+    body {
+        font-family: var(--bs-font-sans-serif);
+    }
+
     .content {
         margin-left: 250px;
         padding: 20px;
@@ -252,6 +272,50 @@ function getStarRating($rating) {
         font-size: 0.7em;
         vertical-align: middle;
     }
+
+    /* Custom Class untuk Header Tabel (Menggantikan table-primary) */
+    .table-green-header {
+        background-color: var(--color-primary-green) !important;
+        /* Diubah dari 'white' menjadi 'black' untuk non-link TH */
+        color: black;
+        border-color: var(--color-primary-green);
+    }
+
+    /* Custom Class untuk Tombol Utama dan Warna Teks Utama (Menggantikan btn-primary/text-primary) */
+    .btn-green-primary,
+    .bg-green-primary,
+    .badge.bg-green-primary {
+        background-color: var(--color-button-green) !important;
+        border-color: var(--color-button-green) !important;
+        color: white !important;
+    }
+
+    .btn-green-primary:hover {
+        background-color: #12744d !important;
+        border-color: #12744d !important;
+    }
+
+    .text-green-main {
+        color: var(--color-primary-green) !important;
+    }
+
+    /* Pagination Aktif */
+    .page-item.active .page-link {
+        background-color: var(--color-primary-green);
+        border-color: var(--color-primary-green);
+    }
+
+    /* Detail Button (menggantikan btn-info) */
+    .btn-green-action {
+        background-color: var(--color-primary-green) !important;
+        border-color: var(--color-primary-green) !important;
+        color: white !important;
+    }
+
+    .btn-green-action:hover {
+        background-color: #0e4c2b !important;
+        border-color: #0e4c2b !important;
+    }
     </style>
 </head>
 
@@ -260,7 +324,7 @@ function getStarRating($rating) {
     <?php include 'sidebar.php' // Asumsi file sidebar.php ada ?>
 
     <div class="content">
-        <h2 class="mb-4"><i class="bi bi-bar-chart-line-fill me-2"></i> Laporan Hasil Survey</h2>
+        <h2 class="mb-4 text-green-main"><i class="bi bi-bar-chart-line-fill me-2"></i> Laporan Hasil Survey</h2>
 
         <div id="alert-container">
             <?php 
@@ -272,6 +336,7 @@ function getStarRating($rating) {
                 } elseif (isset($_GET['status']) && isset($_GET['pesan'])) {
                     $status = ($_GET['status'] == 'sukses') ? 'success' : 'danger';
                     $icon = ($_GET['status'] == 'sukses') ? 'bi-check-circle' : 'bi-x-octagon';
+                    // Menggunakan warna Bootstrap success/danger standar
                     echo "<div class='alert alert-$status alert-dismissible fade show' role='alert'>";
                     echo "<i class='bi $icon me-2'></i> " . htmlspecialchars($_GET['pesan']);
                     echo "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>";
@@ -293,7 +358,7 @@ function getStarRating($rating) {
 
                     <input type="text" name="cari" class="form-control me-2" placeholder="Cari Plat/No. Pendaftaran..."
                         value="<?php echo htmlspecialchars($kata_kunci); ?>">
-                    <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i></button>
+                    <button class="btn btn-green-primary" type="submit"><i class="bi bi-search"></i></button>
                     <?php if (!empty($kata_kunci)): ?>
                     <a href="<?php echo $current_file_name; ?>?<?php echo build_query_string(['cari' => '']); ?>"
                         class="btn btn-outline-secondary ms-2" title="Reset Pencarian"><i class="bi bi-x-circle"></i>
@@ -322,23 +387,24 @@ function getStarRating($rating) {
 
             <div class="col-md-5 text-end">
                 <a href="<?php echo $current_file_name; ?>?<?php echo build_query_string(['export' => 'csv']); ?>"
-                    class="btn btn-success text-white">
+                    class="btn btn-green-primary text-white">
                     <i class="bi bi-download me-2"></i> Export CSV
                 </a>
             </div>
         </div>
 
         <p class="text-muted">Menampilkan <?php echo count($laporan_list); ?> dari total
-            **<?php echo number_format($total_data); ?>** laporan.</p>
+            <?php echo number_format($total_data); ?> laporan.</p>
 
         <div class="card shadow-sm mb-4">
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-hover align-middle">
-                        <thead class="table-primary">
+                        <thead class="table-green-header">
                             <tr>
                                 <th class="text-center">#</th>
                                 <?php 
+                                    // PERUBAHAN FUNGSI: Mengubah 'text-white' menjadi 'text-dark'
                                     function render_sort_header($label, $column_key, $current_sort_by, $current_sort_order) {
                                         $new_order = ($current_sort_by == $column_key && $current_sort_order == 'ASC') ? 'DESC' : 'ASC';
                                         $icon = '';
@@ -346,48 +412,17 @@ function getStarRating($rating) {
                                             $icon = ($current_sort_order == 'ASC') ? '<i class="bi bi-caret-up-fill sort-icon"></i>' : '<i class="bi bi-caret-down-fill sort-icon"></i>';
                                         }
                                         $query_string = build_query_string(['sort_by' => $column_key, 'sort_order' => $new_order, 'halaman' => 1]);
-                                        return "<th class='sortable-th'><a href=\"?{$query_string}\" class='text-white text-decoration-none'>{$label} {$icon}</a></th>";
+                                        // MENGGANTI text-white dengan text-dark
+                                        return "<th class='sortable-th'><a href=\"?{$query_string}\" class='text-dark text-decoration-none'>{$label} {$icon}</a></th>";
                                     }
                                 ?>
                                 <?php echo render_sort_header('Plat Nomor', 'plat_nomor', $sort_by, $sort_order); ?>
                                 <?php echo render_sort_header('No. Pendaftaran', 'nomor_pendaftaran', $sort_by, $sort_order); ?>
                                 <?php echo render_sort_header('Petugas Lapangan', 'petugas', $sort_by, $sort_order); ?>
-                                <th class="text-center">
-                                    <a href="?<?php echo build_query_string(['sort_by' => 'pelayanan', 'sort_order' => ($sort_by == 'pelayanan' && $sort_order == 'ASC' ? 'DESC' : 'ASC'), 'halaman' => 1]); ?>"
-                                        class="text-white text-decoration-none">Pelayanan
-                                        <?php if ($sort_by == 'pelayanan'): ?>
-                                        <i
-                                            class="bi bi-caret-<?php echo $sort_order == 'ASC' ? 'up' : 'down'; ?>-fill sort-icon"></i>
-                                        <?php endif; ?>
-                                    </a>
-                                </th>
-                                <th class="text-center">
-                                    <a href="?<?php echo build_query_string(['sort_by' => 'fasilitas', 'sort_order' => ($sort_by == 'fasilitas' && $sort_order == 'ASC' ? 'DESC' : 'ASC'), 'halaman' => 1]); ?>"
-                                        class="text-white text-decoration-none">Fasilitas
-                                        <?php if ($sort_by == 'fasilitas'): ?>
-                                        <i
-                                            class="bi bi-caret-<?php echo $sort_order == 'ASC' ? 'up' : 'down'; ?>-fill sort-icon"></i>
-                                        <?php endif; ?>
-                                    </a>
-                                </th>
-                                <th class="text-center">
-                                    <a href="?<?php echo build_query_string(['sort_by' => 'kecepatan', 'sort_order' => ($sort_by == 'kecepatan' && $sort_order == 'ASC' ? 'DESC' : 'ASC'), 'halaman' => 1]); ?>"
-                                        class="text-white text-decoration-none">Kecepatan
-                                        <?php if ($sort_by == 'kecepatan'): ?>
-                                        <i
-                                            class="bi bi-caret-<?php echo $sort_order == 'ASC' ? 'up' : 'down'; ?>-fill sort-icon"></i>
-                                        <?php endif; ?>
-                                    </a>
-                                </th>
-                                <th class="text-center">
-                                    <a href="?<?php echo build_query_string(['sort_by' => 'waktu', 'sort_order' => ($sort_by == 'waktu' && $sort_order == 'DESC' ? 'ASC' : 'DESC'), 'halaman' => 1]); ?>"
-                                        class="text-white text-decoration-none">Waktu Survey
-                                        <?php if ($sort_by == 'waktu'): ?>
-                                        <i
-                                            class="bi bi-caret-<?php echo $sort_order == 'ASC' ? 'up' : 'down'; ?>-fill sort-icon"></i>
-                                        <?php endif; ?>
-                                    </a>
-                                </th>
+                                <?php echo render_sort_header('Pelayanan', 'pelayanan', $sort_by, $sort_order); ?>
+                                <?php echo render_sort_header('Fasilitas', 'fasilitas', $sort_by, $sort_order); ?>
+                                <?php echo render_sort_header('Kecepatan', 'kecepatan', $sort_by, $sort_order); ?>
+                                <?php echo render_sort_header('Waktu Survey', 'waktu', $sort_by, $sort_order); ?>
                                 <th class="text-center">Aksi</th>
                             </tr>
                         </thead>
@@ -407,7 +442,7 @@ function getStarRating($rating) {
                                     <?php echo date('d/m/Y H:i', strtotime($data['filled_at'])); ?>
                                 </td>
                                 <td class="text-center">
-                                    <button type="button" class="btn btn-sm btn-info text-white" title="Lihat Komentar"
+                                    <button type="button" class="btn btn-sm btn-green-action" title="Lihat Komentar"
                                         onclick="showDetailSurvey(<?php echo $data['id_kendaraan']; ?>)">
                                         <i class="bi bi-file-earmark-text"></i>
                                     </button>
@@ -465,7 +500,7 @@ function getStarRating($rating) {
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header bg-info text-white">
+                <div class="modal-header bg-green-primary text-white">
                     <h5 class="modal-title" id="surveyDetailModalLabel"><i class="bi bi-chat-dots me-2"></i> Detail
                         Hasil Survey</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
@@ -473,13 +508,13 @@ function getStarRating($rating) {
                 </div>
                 <div class="modal-body">
                     <div id="survey-modal-loader" class="text-center">
-                        <div class="spinner-border text-primary" role="status">
+                        <div class="spinner-border text-green-main" role="status">
                             <span class="visually-hidden">Loading...</span>
                         </div>
                         <p class="mt-2">Memuat data...</p>
                     </div>
                     <div id="survey-data-container" style="display:none;">
-                        <h5 class="mb-3"><span id="detail-plat_nomor_title" class="badge bg-primary"></span></h5>
+                        <h5 class="mb-3"><span id="detail-plat_nomor_title" class="badge bg-green-primary"></span></h5>
                         <table class="table table-bordered table-sm">
                             <tr>
                                 <th>No. Pendaftaran</th>
@@ -499,7 +534,7 @@ function getStarRating($rating) {
                             </tr>
                         </table>
 
-                        <h6 class="mt-4 text-primary">Rating Pelanggan</h6>
+                        <h6 class="mt-4 text-green-main">Rating Pelanggan</h6>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Pelayanan Petugas
@@ -515,7 +550,7 @@ function getStarRating($rating) {
                             </li>
                         </ul>
 
-                        <h6 class="mt-4 text-primary">Komentar Pelanggan</h6>
+                        <h6 class="mt-4 text-green-main">Komentar Pelanggan</h6>
                         <p id="detail-komentar" class="alert alert-light border"></p>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 <?php
 // ===============================================
-// SIDEBAR UPT PKB (Refaktor Tampilan Modern)
+// SIDEBAR UPT PKB (Refaktor Tampilan Modern: Hitam dengan Aksen Hijau)
 // ===============================================
 
 // Ambil nama berkas (file) yang sedang dibuka
@@ -18,18 +18,30 @@ $menu_items = [
 ?>
 
 <style>
-/* * CATATAN: Karena ini adalah komponen terpisah yang di-include, 
- * saya akan menggunakan style yang terpisah dari file utama.
- * Style modern dark mode untuk tampilan sidebar.
+/* * Kustomisasi Sidebar: Tampilan modern dark mode (Hitam) dengan aksen Hijau.
+ * Ini memastikan konsistensi tema dan visibilitas font yang lebih baik.
  */
 :root {
+    /* Definisi Warna Hijau Utama (dari file laporan-survey.php) */
+    --color-primary-green: #146c43;
+    /* Dark Green */
+    --color-button-green: #198754;
+    /* Success Green */
+
+    /* Sidebar Variables - Dark/Black Base */
     --sidebar-bg: #212529;
+    /* Dark Gray / Black Base */
     --sidebar-width: 280px;
-    --primary-color: #0d6efd;
+    --primary-color: var(--color-button-green);
+    /* Active link BG is Green */
     --text-color: #adb5bd;
-    --active-bg: rgba(13, 110, 253, 0.15);
+    /* Light gray text for non-active */
+    --active-bg: var(--color-button-green);
+    /* Active link BG is Green */
     --hover-bg: #343a40;
+    /* Lighter dark gray for hover */
     --header-text: #fff;
+    /* White header text */
 }
 
 .sidebar {
@@ -38,13 +50,13 @@ $menu_items = [
     top: 0;
     left: 0;
     width: var(--sidebar-width);
+    /* Menggunakan background gelap */
     background-color: var(--sidebar-bg);
     color: var(--text-color);
     display: flex;
     flex-direction: column;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.4);
     z-index: 1030;
-    /* Di atas navbar */
 }
 
 /* Penyesuaian agar konten di file utama tidak tertutup sidebar */
@@ -56,7 +68,8 @@ $menu_items = [
 /* Header/Logo Section */
 .sidebar-header {
     padding: 20px 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    /* Garis pemisah lebih samar */
     text-align: center;
 }
 
@@ -74,7 +87,6 @@ $menu_items = [
 /* Menu Items Styling */
 .sidebar .nav-item {
     padding: 0 15px;
-    /* Padding samping untuk list item */
 }
 
 .sidebar .nav-link {
@@ -82,7 +94,6 @@ $menu_items = [
     padding: 12px 15px;
     margin-bottom: 5px;
     border-radius: 8px;
-    /* Sudut melengkung */
     transition: background-color 0.2s, color 0.2s;
     font-size: 1rem;
     display: flex;
@@ -93,16 +104,16 @@ $menu_items = [
 .sidebar .nav-link:hover {
     background-color: var(--hover-bg);
     color: #fff;
-    /* Teks putih saat hover */
 }
 
 /* Active State */
 .sidebar .nav-link.active {
-    background-color: var(--primary-color);
+    /* Menggunakan warna hijau sebagai aksen utama */
+    background-color: var(--active-bg);
     color: #fff;
-    /* Teks putih */
     font-weight: 600;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    /* Shadow hijau untuk menonjolkan */
+    box-shadow: 0 4px 10px rgba(25, 135, 84, 0.4);
 }
 
 /* Icon Styling */
@@ -115,6 +126,20 @@ $menu_items = [
 .sidebar-footer {
     padding: 15px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Logout Button (Menggunakan outline putih agar terlihat jelas di footer gelap) */
+.sidebar-footer .btn-outline-light {
+    color: #fff;
+    border-color: #fff;
+    /* Hover state untuk kontras yang baik */
+}
+
+.sidebar-footer .btn-outline-light:hover {
+    color: var(--sidebar-bg);
+    /* Teks menjadi warna gelap sidebar saat hover */
+    background-color: #fff;
+    border-color: #fff;
 }
 </style>
 

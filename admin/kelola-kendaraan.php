@@ -90,7 +90,20 @@ try {
     <title>Kelola Data Kendaraan | UPT PKB</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
+    /* 1. Atur Font Lato dan Custom Green Theme */
+    :root {
+        --bs-success-dark: #0F6D38;
+        /* Custom Dark Green for Header */
+        --bs-success-light: #198754;
+        /* Standard Bootstrap Success */
+    }
+
+    body {
+        font-family: 'Lato', sans-serif;
+    }
+
     .content {
         margin-left: 250px;
         padding: 20px;
@@ -98,6 +111,34 @@ try {
 
     .status-badge {
         min-width: 100px;
+    }
+
+    /* Kustomisasi Header Tabel (Agar lebih gelap dari success biasa) */
+    .table-success-dark {
+        --bs-table-bg: var(--bs-success-dark);
+        --bs-table-color: white;
+        --bs-table-border-color: var(--bs-success-dark);
+        border-color: var(--bs-success-dark);
+    }
+
+    /* Kustomisasi Heading Warna Hijau */
+    .content h2 {
+        color: var(--bs-success-dark);
+    }
+
+    /* Kustomisasi Pagination (Menggunakan warna hijau) */
+    .pagination .page-item.active .page-link {
+        background-color: var(--bs-success-light);
+        border-color: var(--bs-success-light);
+    }
+
+    .pagination .page-link {
+        color: var(--bs-success-light);
+    }
+
+    /* Kustomisasi Spinner di Modal Detail */
+    #detail-modal-loader .spinner-border {
+        color: var(--bs-success-light) !important;
     }
     </style>
 </head>
@@ -128,7 +169,7 @@ try {
                     <input type="text" name="cari" class="form-control me-2"
                         placeholder="Cari Plat/No. Pendaftaran/Pemilik..."
                         value="<?php echo htmlspecialchars($kata_kunci); ?>">
-                    <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i> Cari</button>
+                    <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i> Cari</button>
                     <?php if (!empty($kata_kunci)): ?>
                     <a href="kelola-kendaraan.php" class="btn btn-outline-secondary ms-2"><i class="bi bi-x-circle"></i>
                         Reset</a>
@@ -141,13 +182,13 @@ try {
             </div>
         </div>
 
-        <p class="text-muted">Total data ditemukan: **<?php echo number_format($total_data); ?>**</p>
+        <p class="text-muted">Total data ditemukan: <?php echo number_format($total_data); ?></p>
 
         <div class="card shadow-sm mb-4">
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover align-middle">
-                        <thead class="table-primary">
+                        <thead class="table-success-dark">
                             <tr>
                                 <th class="text-center">#</th>
                                 <th>No. Pendaftaran</th>
@@ -172,13 +213,14 @@ try {
                                 <td class="text-center">
                                     <?php 
                                         $status = $data['status_survey'] == 1 ? 'Sudah Survey' : 'Belum Survey';
+                                        // Tetap menggunakan bg-success dan bg-danger untuk kontras yang jelas
                                         $badge_color = $data['status_survey'] == 1 ? 'bg-success' : 'bg-danger';
                                     ?>
                                     <span
                                         class="badge <?php echo $badge_color; ?> status-badge"><?php echo $status; ?></span>
                                 </td>
                                 <td class="text-center">
-                                    <button type="button" class="btn btn-sm btn-info text-white" title="Lihat Detail"
+                                    <button type="button" class="btn btn-sm btn-success text-white" title="Lihat Detail"
                                         onclick="showDetail(<?php echo $data['id_kendaraan']; ?>)">
                                         <i class="bi bi-eye"></i>
                                     </button>
@@ -235,7 +277,7 @@ try {
     <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header bg-info text-white">
+                <div class="modal-header bg-success text-white">
                     <h5 class="modal-title" id="detailModalLabel"><i class="bi bi-card-list me-2"></i> Detail Kendaraan
                     </h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
@@ -243,7 +285,7 @@ try {
                 </div>
                 <div class="modal-body">
                     <div id="detail-modal-loader" class="text-center">
-                        <div class="spinner-border text-primary" role="status">
+                        <div class="spinner-border text-success" role="status">
                             <span class="visually-hidden">Loading...</span>
                         </div>
                         <p class="mt-2">Memuat data...</p>

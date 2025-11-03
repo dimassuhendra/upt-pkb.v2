@@ -79,10 +79,91 @@ try {
     <title>Kelola Data Petugas | UPT PKB</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
+    /* DEFINISI WARNA HIJAU UNTUK NUANSA TEMA */
+    :root {
+        /* Warna Dasar Hijau */
+        --bs-green-main: #198754;
+        /* Mirip Bootstrap Success */
+        --bs-green-vibrant: #20c997;
+        /* Untuk Detail/Info */
+        --bs-green-soft: #95d5b2;
+        /* Untuk Edit/Warning */
+        --bs-green-text: #0f5132;
+        --bs-green-bg: #d1e7dd;
+    }
+
+    body {
+        font-family: 'Lato', sans-serif;
+        /* APLIKASI FONT LATO */
+    }
+
     .content {
         margin-left: 250px;
         padding: 20px;
+    }
+
+    /* Kustomisasi Warna untuk Nuansa Hijau */
+
+    /* 1. Warna Utama (Primary): Diubah ke Hijau */
+    .btn-outline-primary {
+        --bs-btn-color: var(--bs-green-main);
+        --bs-btn-border-color: var(--bs-green-main);
+        --bs-btn-hover-bg: var(--bs-green-main);
+        --bs-btn-hover-border-color: var(--bs-green-main);
+        --bs-btn-active-bg: var(--bs-green-dark);
+        --bs-btn-active-border-color: var(--bs-green-dark);
+        color: var(--bs-green-main);
+    }
+
+    .table-primary {
+        /* Header Tabel */
+        --bs-table-bg: var(--bs-green-bg);
+        --bs-table-border-color: #badbcc;
+        color: var(--bs-green-text);
+        border-color: var(--bs-green-text);
+    }
+
+    .text-primary {
+        color: var(--bs-green-main) !important;
+    }
+
+    /* 2. Warna Info (Detail): Diubah ke Hijau Lebih Terang */
+    .bg-info {
+        background-color: var(--bs-green-vibrant) !important;
+        color: white !important;
+    }
+
+    .btn-info {
+        background-color: var(--bs-green-vibrant) !important;
+        border-color: var(--bs-green-vibrant);
+        color: white !important;
+    }
+
+    .text-info {
+        color: var(--bs-green-vibrant) !important;
+    }
+
+    /* 3. Warna Warning (Edit): Diubah ke Hijau yang Berbeda (Olive Green) untuk Kontras */
+    .bg-warning {
+        background-color: var(--bs-green-soft) !important;
+        color: #333 !important;
+        /* Teks gelap agar terbaca */
+    }
+
+    .btn-warning {
+        background-color: var(--bs-green-soft) !important;
+        border-color: var(--bs-green-soft);
+        color: #333 !important;
+        /* Teks gelap agar terbaca */
+    }
+
+    .text-warning {
+        /* Untuk spinner loading edit */
+        color: var(--bs-green-soft) !important;
     }
     </style>
 </head>
@@ -126,7 +207,7 @@ try {
             </div>
         </div>
 
-        <p class="text-muted">Total data ditemukan: **<?php echo number_format($total_data); ?>**</p>
+        <p class="text-muted">Total data ditemukan: <?php echo number_format($total_data); ?></p>
 
         <div class="card shadow-sm mb-4">
             <div class="card-body">
@@ -250,6 +331,7 @@ try {
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -310,6 +392,7 @@ try {
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -404,7 +487,7 @@ try {
                 document.getElementById('detail-email').textContent = data.email || '-';
                 // Menggunakan 'role'
                 document.getElementById('detail-role').textContent = data.role ? (data.role.charAt(0)
-                .toUpperCase() + data.role.slice(1)) : '-';
+                    .toUpperCase() + data.role.slice(1)) : '-';
 
                 loader.style.display = 'none';
                 dataContainer.style.display = 'block';

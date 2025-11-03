@@ -30,7 +30,6 @@ $bar_chart_petugas_ratings_pelayanan = [];
 $bar_chart_petugas_ratings_fasilitas = [];
 $bar_chart_petugas_ratings_kecepatan = [];
 
-
 $nomor_pendaftaran_auto = date('d/m/y') . '/001';
 // Tentukan label default untuk chart tren mingguan jika belum ada data
 $date_format_php = 'd M';
@@ -70,7 +69,7 @@ try {
     
     // e. List Petugas untuk Form
     $list_petugas = $pdo->query("SELECT id_petugas, nama_petugas FROM petugas ORDER BY nama_petugas ASC")->fetchAll(PDO::FETCH_ASSOC);
-
+    
     // =====================================================================
     // B. Ranking Petugas & Data untuk Bar Chart (Diperbarui untuk 4 rating)
     // =====================================================================
@@ -87,7 +86,8 @@ try {
         INNER JOIN 
             kendaraan k ON p.id_petugas = k.id_petugas
         INNER JOIN 
-            survey s ON k.id_kendaraan = s.id_kendaraan
+            survey s ON 
+            k.id_kendaraan = s.id_kendaraan
         GROUP BY 
             p.id_petugas, p.nama_petugas
         HAVING 
@@ -120,7 +120,8 @@ try {
         SELECT 
             YEARWEEK(s.filled_at, 1) as week_num,
             -- Tampilkan label sebagai Tanggal mulai minggu (Senin)
-            DATE_FORMAT(DATE_ADD(DATE(s.filled_at), INTERVAL 1-DAYOFWEEK(s.filled_at) DAY), 
+            DATE_FORMAT(DATE_ADD(DATE(s.filled_at), INTERVAL 1-DAYOFWEEK(s.filled_at) 
+            DAY), 
             '{$date_format_sql}') as start_date_label,
             AVG((s.rating_pelayanan + s.rating_fasilitas + s.rating_kecepatan) / 3) as weekly_avg_rating,
             AVG(s.rating_pelayanan) as weekly_avg_pelayanan,
@@ -174,7 +175,7 @@ try {
     $chart_data_ratings_pelayanan = array_column($processed_chart_data, 'weekly_avg_pelayanan');
     $chart_data_ratings_fasilitas = array_column($processed_chart_data, 'weekly_avg_fasilitas');
     $chart_data_ratings_kecepatan = array_column($processed_chart_data, 'weekly_avg_kecepatan');
-
+    
     // =====================================================================
     // D. GENERASI NOMOR PENDAFTARAN OTOMATIS (TETAP SAMA)
     // =====================================================================
@@ -225,7 +226,107 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
     <title>Dashboard Admin | UPT PKB</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
+    /* Definisi Palet Warna Hijau dan Font Lato */
+    :root {
+        --green-primary: #1e7b3a;
+        /* Darker Green for main elements (Base) */
+        --green-secondary: #27ae60;
+        /* Medium Green (KPI Info/Warning) */
+        --green-info: #2ecc71;
+        /* Light Green (KPI Warning/Info) */
+        --green-dark: #145e2a;
+        /* Very Dark Green (KPI Dark) */
+        --green-light: #f3fcf5;
+        /* Very Light Green for background/hover */
+        --bs-font-sans-serif: 'Lato', sans-serif;
+    }
+
+    body {
+        font-family: var(--bs-font-sans-serif);
+    }
+
+    /* Override Bootstrap primary elements to use custom green */
+    .text-primary {
+        color: var(--green-primary) !important;
+    }
+
+    .bg-primary {
+        background-color: var(--green-primary) !important;
+    }
+
+    .btn-primary {
+        --bs-btn-bg: var(--green-primary);
+        --bs-btn-border-color: var(--green-primary);
+        --bs-btn-hover-bg: var(--green-dark);
+        --bs-btn-hover-border-color: var(--green-dark);
+        --bs-btn-active-bg: var(--green-dark);
+        --bs-btn-active-border-color: var(--green-dark);
+    }
+
+    .btn-outline-primary {
+        --bs-btn-color: var(--green-primary);
+        --bs-btn-border-color: var(--green-primary);
+        --bs-btn-hover-color: #fff;
+        --bs-btn-hover-bg: var(--green-primary);
+        --bs-btn-hover-border-color: var(--green-primary);
+        --bs-btn-active-color: #fff;
+        --bs-btn-active-bg: var(--green-dark);
+        --bs-btn-active-border-color: var(--green-dark);
+    }
+
+    /* Custom classes untuk KPI Cards, menggantikan bg-dark, bg-info, bg-warning, bg-success */
+    .bg-kpi-dark {
+        background-color: var(--green-dark) !important;
+    }
+
+    .bg-kpi-info {
+        background-color: var(--green-secondary) !important;
+    }
+
+    /* Mengganti bg-info */
+    .bg-kpi-warning {
+        background-color: var(--green-info) !important;
+    }
+
+    /* Mengganti bg-warning */
+    .bg-kpi-success {
+        background-color: var(--green-primary) !important;
+    }
+
+    /* Mengganti bg-success */
+
+    /* Custom classes untuk Header Card Chart/Ranking */
+    .bg-chart-secondary {
+        background-color: #495057 !important;
+    }
+
+    /* Netral: Abu-abu gelap */
+    .bg-chart-warning {
+        background-color: var(--green-info) !important;
+    }
+
+    /* Hijau Muda */
+    .bg-chart-info {
+        background-color: var(--green-secondary) !important;
+    }
+
+    /* Hijau Sedang */
+
+    /* Custom classes untuk Peringkat */
+    .text-rank-1 {
+        color: var(--green-dark) !important;
+    }
+
+    .text-rank-2 {
+        color: var(--green-secondary) !important;
+    }
+
+    .text-rank-3 {
+        color: var(--green-info) !important;
+    }
+
     .content {
         margin-left: 250px;
         padding: 20px;
@@ -265,7 +366,8 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
 
     /* Style untuk sel hari ini */
     .calendar .today {
-        background-color: var(--bs-primary);
+        background-color: var(--green-primary);
+        /* Gunakan Primary Green */
         color: white;
         font-weight: bold;
         border-radius: 50%;
@@ -289,8 +391,8 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
     }
 
     .calendar td:not(.today):not(:empty):hover {
-        background-color: #f8f9fa;
-        /* Highlight saat di-hover */
+        background-color: var(--green-light);
+        /* Hover background menggunakan Light Green */
     }
 
     /* Membatasi tinggi canvas chart */
@@ -341,7 +443,6 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
                             
                             // Header: Ganti inisial hari
                             echo '<thead><tr><th>Min</th><th>Sen</th><th>Sel</th><th>Rab</th><th>Kam</th><th>Jum</th><th>Sab</th></tr></thead>';
-                            
                             echo '<tbody><tr>';
                             // Isi hari kosong di awal bulan
                             for ($i = 0; $i < $dayOfWeek; $i++) {
@@ -377,7 +478,7 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
             <div class="col-md-8">
                 <div class="card shadow-sm border-0">
                     <div class="card-header bg-primary text-white">
-                        <i class="bi bi-plus-square me-2"></i> **Tambah Data Kendaraan Baru**
+                        <i class="bi bi-plus-square me-2"></i>Tambah Data Kendaraan Baru
                     </div>
                     <div class="card-body">
                         <form action="proses/proses_tambah-kendaraan.php" method="POST">
@@ -438,10 +539,9 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
                                     }
                                     ?>
                                 </select>
-                                <small class="text-muted">Status Survey akan otomatis **Belum Survey** (nilai 0) setelah
-                                    data disimpan.</small>
+
                             </div>
-                            <button type="submit" class="btn btn-success"><i class="bi bi-save me-2"></i> Simpan
+                            <button type="submit" class="btn btn-primary"><i class="bi bi-save me-2"></i> Simpan
                                 Pendaftaran</button>
                         </form>
                     </div>
@@ -451,7 +551,7 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
 
         <div class="row mb-4">
             <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card text-white bg-dark shadow-sm h-100">
+                <div class="card text-white bg-kpi-dark shadow-sm h-100">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <i class="bi bi-truck-flatbed display-4 me-3"></i>
@@ -465,7 +565,7 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
             </div>
 
             <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card text-white bg-info shadow-sm h-100">
+                <div class="card text-white bg-kpi-info shadow-sm h-100">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <i class="bi bi-calendar-week display-4 me-3"></i>
@@ -479,7 +579,7 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
             </div>
 
             <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card text-white bg-warning shadow-sm h-100">
+                <div class="card text-white bg-kpi-warning shadow-sm h-100">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <i class="bi bi-calendar-event display-4 me-3"></i>
@@ -493,7 +593,7 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
             </div>
 
             <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card text-white bg-success shadow-sm h-100">
+                <div class="card text-white bg-kpi-success shadow-sm h-100">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <i class="bi bi-star-fill display-4 me-3"></i>
@@ -510,8 +610,8 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
         <div class="row mb-4">
             <div class="col-lg-6 mb-4">
                 <div class="card shadow-sm border-0 h-100">
-                    <div class="card-header bg-secondary text-white">
-                        <i class="bi bi-graph-up me-2"></i> **Tren Rating Berdasarkan Kategori (4 Minggu Terakhir)**
+                    <div class="card-header bg-chart-secondary text-white">
+                        <i class="bi bi-graph-up me-2"></i>Tren Rating Berdasarkan Kategori (4 Minggu Terakhir)
                     </div>
                     <div class="card-body">
                         <div class="chart-btn-group" id="lineChartButtons">
@@ -532,8 +632,8 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
 
             <div class="col-lg-6 mb-4">
                 <div class="card shadow-sm border-0 h-100">
-                    <div class="card-header bg-warning text-white">
-                        <i class="bi bi-bar-chart-fill me-2"></i> **Perbandingan Rata-rata Rating Petugas**
+                    <div class="card-header bg-chart-warning text-white">
+                        <i class="bi bi-bar-chart-fill me-2"></i>Perbandingan Rata-rata Rating Petugas
                     </div>
                     <div class="card-body">
                         <div class="chart-btn-group" id="barChartButtons">
@@ -557,8 +657,8 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
         <div class="row mb-4">
             <div class="col-12">
                 <div class="card shadow-sm border-0">
-                    <div class="card-header bg-info text-white">
-                        <i class="bi bi-trophy-fill me-2"></i> **Peringkat Petugas Lapangan Berdasarkan Rating**
+                    <div class="card-header bg-chart-info text-white">
+                        <i class="bi bi-trophy-fill me-2"></i>Peringkat Petugas Lapangan Berdasarkan Rating
                     </div>
                     <div class="card-body">
                         <?php if (!empty($ranking_petugas)): ?>
@@ -578,9 +678,10 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
                                     <tr>
                                         <td class="text-center fw-bold">
                                             <?php 
-                                            if ($rank == 1) echo '<i class="bi bi-award-fill text-warning me-1"></i>';
-                                            else if ($rank == 2) echo '<i class="bi bi-award-fill text-secondary me-1"></i>';
-                                            else if ($rank == 3) echo '<i class="bi bi-award-fill text-danger me-1"></i>';
+                                            // Mengganti warna piala dengan gradasi hijau
+                                            if ($rank == 1) echo '<i class="bi bi-award-fill text-rank-1 me-1"></i>';
+                                            else if ($rank == 2) echo '<i class="bi bi-award-fill text-rank-2 me-1"></i>';
+                                            else if ($rank == 3) echo '<i class="bi bi-award-fill text-rank-3 me-1"></i>';
                                             echo $rank++;
                                             ?>
                                         </td>
@@ -612,6 +713,7 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
     // =======================================================
     // 1. FUNGSI UTAMA UNTUK MENAMPILKAN DAN MENGHILANGKAN ALERT
     // =======================================================
+
     function displayAlert(status, message) {
         const container = document.getElementById('alert-container');
         if (!container) {
@@ -641,111 +743,11 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
     }
 
     // =======================================================
-    // 2. FUNGSI UNTUK MEMPERBARUI FORM & STATISTIK (AJAX)
+    // 2. FUNGSI UNTUK MEMPERBARUI FORM & STATISTIK (AJAX) - TIDAK DIGUNAKAN KARENA RELOAD
     // =======================================================
-    // Fungsi ini melakukan refresh parsial pada dashboard tanpa reload halaman penuh
+    // Fungsi ini tidak diperlukan karena menggunakan window.location.reload()
     async function updateDashboardData() {
-        const dashboardContent = document.querySelector('.content');
-        if (!dashboardContent) return;
-
-        const scrollPosition = window.scrollY;
-
-        try {
-            // Ambil konten dashboard terbaru
-            const response = await fetch('index.php');
-            if (!response.ok) throw new Error('Gagal mengambil konten dashboard terbaru.');
-            const html = await response.text();
-
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-
-            // --- Bagian yang Diperbarui ---
-
-            // 1. Form dan Nomor Pendaftaran Otomatis
-            const newFormContainer = doc.querySelector('.col-md-8 form').closest('.col-md-8');
-            const oldFormContainer = document.querySelector('.col-md-8 form').closest('.col-md-8');
-            if (oldFormContainer && newFormContainer) {
-                oldFormContainer.innerHTML = newFormContainer.innerHTML;
-                attachFormSubmitListener(); // Pasang kembali event listener
-            }
-
-            // 2. KPI Cards
-            const newKpiCards = doc.querySelector('.row.mb-4:nth-of-type(2)');
-            const oldKpiCards = document.querySelector('.row.mb-4:nth-of-type(2)');
-            if (oldKpiCards && newKpiCards) {
-                oldKpiCards.innerHTML = newKpiCards.innerHTML;
-            }
-
-            // 3. Ranking Table
-            const newRankingTable = doc.querySelector('.row.mb-4:nth-of-type(4) .card-body');
-            const oldRankingTable = document.querySelector('.row.mb-4:nth-of-type(4) .card-body');
-            if (oldRankingTable && newRankingTable) {
-                oldRankingTable.innerHTML = newRankingTable.innerHTML;
-            }
-
-            // 4. Update Charts
-            // Ambil data JSON dari HTML yang baru di-fetch
-            const newScriptContent = doc.querySelector('script:nth-of-type(2)').textContent;
-
-            // Ekstrak variabel JSON baru dari skrip (membutuhkan regex yang lebih canggih, 
-            // namun untuk kasus ini kita bisa memuat ulang data chart dari PHP JSON
-            // yang sudah tersedia di global scope setelah fetch jika kita ingin 
-            // menghindari parsing string JS yang rumit). 
-            // Karena ini tidak mungkin tanpa memuat ulang page atau memanggil AJAX lain, 
-            // kita akan me-reload page untuk kepastian data chart,
-            // atau menggunakan cara yang lebih sederhana: menyimpan data JSON 
-            // dalam elemen tersembunyi.
-
-            // **NOTE:** Untuk penyederhanaan dan kehandalan AJAX partial refresh, 
-            // disarankan untuk memuat ulang halaman (window.location.reload()) 
-            // setelah sukses, atau membuat endpoint AJAX khusus untuk data JSON chart.
-            // Namun, untuk memenuhi permintaan menggunakan script yang ada, kita 
-            // berasumsi data JSON global telah diupdate (seperti di bawah).
-
-            // Jika Anda ingin menggunakan data JSON global yang baru, 
-            // Anda harus membuat endpoint AJAX terpisah untuk mendapatkan data tersebut
-            // dan tidak hanya fetch index.php, atau menaruhnya di elemen tersembunyi. 
-            // Untuk skenario ini, kita akan memaksa *update chart* menggunakan 
-            // variabel data yang di-JSON-encode di PHP (walau kurang efisien dalam AJAX partial):
-
-            // **SOLUSI ALTERNATIF (Paling Aman): Reload Page setelah Sukses Submit**
-            // window.location.reload(); 
-            // ... (Hapus semua kode update chart di bawah jika menggunakan reload)
-
-            // **SOLUSI SAAT INI (Membutuhkan data chart JSON di-embed di HTML baru):**
-            // Karena tidak ada mekanisme sederhana untuk mengambil variabel JSON 
-            // dari string HTML yang di-fetch tanpa regex kompleks atau elemen tersembunyi,
-            // kita akan menggunakan data JSON global yang sudah ada di scope global. 
-            // Jika Anda ingin data baru, Anda harus memuat ulang data chart dari server.
-
-            // **Skenario Terbaik:** Dapatkan data chart dari AJAX endpoint baru
-            // Contoh (jika Anda memiliki endpoint data-chart.php):
-            /*
-            const chartDataResponse = await fetch('data-chart.php');
-            const newChartData = await chartDataResponse.json();
-            updateCharts(newChartData); // Fungsi baru untuk update chart
-            */
-
-            // Karena kita harus menggunakan kode yang ada, kita akan **menggunakan cara yang lebih sederhana**
-            // dan mengabaikan bagian update chart di AJAX, **atau** kita modifikasi
-            // `handleFormSubmit` untuk **memuat ulang halaman penuh** jika Anda menginginkan
-            // data chart yang *benar-benar* baru (disarankan).
-
-            // ***MAAF, TIDAK MUNGKIN MEREFRESH VARIABEL PHP KE JS TANPA RELOAD ATAU AJAX TAMBAHAN.***
-            // Kita akan memaksakan *update chart* dengan data JSON yang tersedia di scope global.
-            // (Pada prakteknya, ini akan menggunakan data chart lama kecuali di-reload penuh).
-            // Kita akan menjaga fungsi updateCharts agar user bisa melihat perubahannya saat reload.
-
-            // 5. Update Charts (Hanya jika Anda tahu cara mengambil data JSON baru dari 'doc' atau menggunakan endpoint baru)
-            // ***KOSONGKAN BAGIAN INI UNTUK SEMENTARA*** // (Asumsi data chart hanya diupdate saat reload halaman penuh, atau implementasi AJAX yang lebih canggih dibutuhkan)
-            // ***JIKA INGIN MEMAKSA REFRESH, GUNAKAN: window.location.reload(); DI handleFormSubmit***
-
-            // Kita hanya akan memastikan posisi scroll tetap.
-            window.scrollTo(0, scrollPosition);
-        } catch (error) {
-            console.error('Error saat memuat ulang dashboard:', error);
-            displayAlert('error', 'Gagal memuat ulang data statistik otomatis.');
-        }
+        // ... (Kode update dashboard dihilangkan/ditinggalkan tidak berfungsi karena diganti reload)
     }
 
 
@@ -769,6 +771,7 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
         submitButton.disabled = true;
         submitButton.innerHTML =
             '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Memproses...';
+
         fetch(form.action, {
                 method: 'POST',
                 body: formData
@@ -781,8 +784,7 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
                 if (data.status === 'sukses') {
                     displayAlert('sukses', data.pesan);
                     form.reset();
-                    // Update form dan statistik. Gunakan reload untuk memastikan data chart yang akurat.
-                    // updateDashboardData(); // Ganti dengan reload untuk kepastian data chart
+                    // Gunakan reload untuk memastikan data chart dan KPI yang akurat
                     window.location.reload();
 
                 } else {
@@ -803,7 +805,7 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
     }
 
     // =======================================================
-    // 4. CHART.JS IMPLEMENTATION
+    // 4. CHART.JS IMPLEMENTATION (Menggunakan Palet Hijau)
     // =======================================================
 
     // Data PHP yang sudah di-JSON-encode 
@@ -819,6 +821,15 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
     const bar_ratings_fasilitas = <?php echo $bar_chart_petugas_json_ratings_fasilitas; ?>;
     const bar_ratings_kecepatan = <?php echo $bar_chart_petugas_json_ratings_kecepatan; ?>;
 
+    // Shades of Green for Charts (RGBA)
+    const GREEN_SHADES = {
+        primary: 'rgba(30, 123, 58, 1)', // Darker Green (Pelayanan/Overall)
+        medium: 'rgba(39, 174, 96, 1)', // Medium Green (Fasilitas)
+        light: 'rgba(46, 204, 113, 1)', // Light Green (Kecepatan)
+        accent1: 'rgba(102, 187, 106, 1)',
+        accent2: 'rgba(170, 215, 120, 1)'
+    };
+
 
     // --- A. Line Chart untuk Kategori Rating (Default: Semua) ---
     const ctxCategory = document.getElementById('categoryRatingChart');
@@ -826,8 +837,8 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
     const initialLineDatasets = [{
             label: 'Pelayanan',
             data: data_ratings_pelayanan,
-            borderColor: 'rgba(54, 162, 235, 1)', // Biru
-            backgroundColor: 'rgba(54, 162, 235, 0.1)',
+            borderColor: GREEN_SHADES.primary,
+            backgroundColor: GREEN_SHADES.primary.replace(/, 1\)/, ', 0.1)'),
             borderWidth: 2,
             tension: 0.4,
             fill: false,
@@ -837,8 +848,8 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
         {
             label: 'Fasilitas',
             data: data_ratings_fasilitas,
-            borderColor: 'rgba(75, 192, 192, 1)', // Hijau Pucat
-            backgroundColor: 'rgba(75, 192, 192, 0.1)',
+            borderColor: GREEN_SHADES.medium, // Medium Green
+            backgroundColor: GREEN_SHADES.medium.replace(/, 1\)/, ', 0.1)'),
             borderWidth: 2,
             tension: 0.4,
             fill: false,
@@ -847,15 +858,14 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
         {
             label: 'Kecepatan',
             data: data_ratings_kecepatan,
-            borderColor: 'rgba(255, 159, 64, 1)', // Oranye
-            backgroundColor: 'rgba(255, 159, 64, 0.1)',
+            borderColor: GREEN_SHADES.light, // Light Green
+            backgroundColor: GREEN_SHADES.light.replace(/, 1\)/, ', 0.1)'),
             borderWidth: 2,
             tension: 0.4,
             fill: false,
             id: 'kecepatan'
         }
     ];
-
     window.categoryRatingChart = new Chart(ctxCategory, {
         type: 'line',
         data: {
@@ -886,7 +896,6 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
             }
         }
     });
-
     // Event Listener untuk Line Chart
     document.getElementById('lineChartButtons').addEventListener('click', function(e) {
         const filter = e.target.getAttribute('data-chart-filter');
@@ -914,21 +923,22 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
 
     // --- B. Bar Chart untuk Rating Petugas (Default: Overall) ---
     const ctxPetugas = document.getElementById('petugasRatingChart');
-
-    // Fungsi untuk mendapatkan warna
+    // Fungsi untuk mendapatkan warna (Hanya gradasi hijau)
     function getBarColors(opacity) {
-        return [
-            `rgba(255, 99, 132, ${opacity})`, // Merah
-            `rgba(54, 162, 235, ${opacity})`, // Biru
-            `rgba(255, 206, 86, ${opacity})`, // Kuning
-            `rgba(75, 192, 192, ${opacity})`, // Hijau
-            `rgba(153, 102, 255, ${opacity})`, // Ungu
-            `rgba(255, 99, 132, ${opacity * 0.7})`,
-            `rgba(54, 162, 235, ${opacity * 0.7})`,
-            `rgba(255, 206, 86, ${opacity * 0.7})`,
-            `rgba(75, 192, 192, ${opacity * 0.7})`,
-            `rgba(153, 102, 255, ${opacity * 0.7})`
+        const colors = [
+            GREEN_SHADES.primary,
+            GREEN_SHADES.medium,
+            GREEN_SHADES.light,
+            GREEN_SHADES.accent1,
+            GREEN_SHADES.accent2,
+            'rgba(80, 170, 100, 1)',
+            'rgba(24, 100, 40, 1)',
+            'rgba(40, 160, 80, 1)',
+            'rgba(60, 140, 70, 1)',
+            'rgba(120, 190, 140, 1)'
         ];
+        // Apply opacity and repeat if necessary
+        return colors.map(color => color.replace(/, 1\)/, `, ${opacity})`));
     }
 
     window.petugasRatingChart = new Chart(ctxPetugas, {
@@ -977,7 +987,6 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
             }
         }
     });
-
     // Event Listener untuk Bar Chart
     document.getElementById('barChartButtons').addEventListener('click', function(e) {
         const category = e.target.getAttribute('data-chart-category');
