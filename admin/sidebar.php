@@ -9,7 +9,7 @@ $menu_items = [
     ['href' => 'kelola-kendaraan.php', 'icon' => 'bi-truck', 'label' => 'Kelola Kendaraan'],
     ['href' => 'kelola-petugas.php', 'icon' => 'bi-person-badge', 'label' => 'Kelola Petugas'],
     ['href' => 'laporan-survey.php', 'icon' => 'bi-bar-chart-line', 'label' => 'Laporan Survei'],
-    ['href' => 'master_data.php', 'icon' => 'bi-database', 'label' => 'Master Data'],
+    // ['href' => 'master-data.php', 'icon' => 'bi-database', 'label' => 'Master Data'],
 ];
 ?>
 
