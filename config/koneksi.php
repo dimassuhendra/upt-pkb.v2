@@ -4,7 +4,6 @@
 // Konfigurasi Koneksi Database Menggunakan PHP PDO
 // ===============================================
 
-// Definisikan Kredensial Database (HARUS disesuaikan)
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
