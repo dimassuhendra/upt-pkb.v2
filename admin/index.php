@@ -231,12 +231,66 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
         padding: 20px;
     }
 
+    /* Styling Baru untuk Kalender */
+    .calendar table {
+        width: 100%;
+        height: 100%;
+        /* Memenuhi lebar container */
+        table-layout: fixed;
+        /* Penting agar sel lebar proporsional */
+        border-collapse: collapse;
+        border: none !important;
+        /* Hapus semua border */
+    }
+
     .calendar th,
     .calendar td {
-        font-size: 0.8rem;
-        padding: 5px !important;
-        height: 30px;
-        width: 30px;
+        font-size: 0.85rem;
+        padding: 0 !important;
+        height: 40px;
+        /* Tinggi sel tetap untuk estetika */
+        line-height: 40px;
+        /* Pusatkan vertikal */
+        border: none !important;
+        text-align: center;
+    }
+
+    /* Style tambahan untuk header hari */
+    .calendar th {
+        font-weight: bold;
+        color: #495057;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+    }
+
+    /* Style untuk sel hari ini */
+    .calendar .today {
+        background-color: var(--bs-primary);
+        color: white;
+        font-weight: bold;
+        border-radius: 50%;
+        /* Membuat hari ini menjadi lingkaran */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.2s;
+    }
+
+    /* Style untuk tanggal (td) */
+    .calendar td {
+        border-radius: 5px;
+        cursor: default;
+        /* Membuat tanggal kosong tidak terlihat */
+        color: #ced4da;
+    }
+
+    /* Override untuk tanggal yang terisi */
+    .calendar td:not(:empty) {
+        color: #212529;
+        /* Warna teks normal */
+    }
+
+    .calendar td:not(.today):not(:empty):hover {
+        background-color: #f8f9fa;
+        /* Highlight saat di-hover */
     }
 
     /* Membatasi tinggi canvas chart */
@@ -271,18 +325,23 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
         <div class="row mb-4">
             <div class="col-md-4">
                 <div class="card shadow-sm border-0 h-100 p-2">
-                    <div class="card-body">
-                        <h5 class="card-title text-primary text-center"><i class="bi bi-calendar3 me-2"></i>
-                            <?php echo $bulan_saat_ini; ?></h5>
-                        <div class="calendar mt-3">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title text-primary text-center mb-3">
+                            <i class="bi bi-calendar3 me-2"></i>
+                            <?php echo $bulan_saat_ini; ?>
+                        </h5>
+                        <div class="calendar flex-grow-1">
                             <?php
                             // PHP untuk membuat kalender sederhana
                             $dayOfWeek = date('w', strtotime('first day of this month')); // 0 (Sun) to 6 (Sat)
                             $daysInMonth = date('t');
                             $currentDay = date('j');
                             
-                            echo '<table class="table table-sm table-bordered text-center">';
+                            echo '<table class="table table-sm text-center">';
+                            
+                            // Header: Ganti inisial hari
                             echo '<thead><tr><th>Min</th><th>Sen</th><th>Sel</th><th>Rab</th><th>Kam</th><th>Jum</th><th>Sab</th></tr></thead>';
+                            
                             echo '<tbody><tr>';
                             // Isi hari kosong di awal bulan
                             for ($i = 0; $i < $dayOfWeek; $i++) {
@@ -291,14 +350,15 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
                             
                             // Isi tanggal
                             for ($day = 1; $day <= $daysInMonth; $day++) {
-                                $isToday = ($day == $currentDay) ? 'bg-primary text-white fw-bold' : '';
+                                $isToday = ($day == $currentDay) ? 'today' : '';
                                 
                                 // Tambahkan hari di awal baris baru (setelah 7 hari)
                                 if (($dayOfWeek + $day - 1) % 7 == 0 && $day != 1) {
                                     echo '</tr><tr>';
                                 }
                                 
-                                echo '<td class="'.$isToday.'">'.$day.'</td>';
+                                // Tidak perlu div di dalam td
+                                echo '<td class="' . $isToday . '">' . $day . '</td>';
                             }
                             
                             // Isi hari kosong di akhir bulan
@@ -310,7 +370,6 @@ $bar_chart_petugas_json_ratings_kecepatan = json_encode($bar_chart_petugas_ratin
                             echo '</tr></tbody></table>';
                             ?>
                         </div>
-                        <p class="text-center mt-2 text-muted">Hari Ini: **<?php echo $tanggal_saat_ini; ?>**</p>
                     </div>
                 </div>
             </div>
