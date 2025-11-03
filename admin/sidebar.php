@@ -1,4 +1,20 @@
+<?php
+// Ambil nama berkas (file) yang sedang dibuka
+// Contoh: Jika URL adalah http://.../admin/kelola-petugas.php, maka $current_page akan bernilai 'kelola-petugas.php'
+$current_page = basename($_SERVER['PHP_SELF']);
+
+// Definisikan daftar menu sidebar dalam bentuk array
+$menu_items = [
+    ['href' => 'index.php', 'icon' => 'bi-speedometer2', 'label' => 'Dashboard'],
+    ['href' => 'kelola-kendaraan.php', 'icon' => 'bi-truck', 'label' => 'Kelola Kendaraan'],
+    ['href' => 'kelola-petugas.php', 'icon' => 'bi-person-badge', 'label' => 'Kelola Petugas'],
+    ['href' => 'laporan-survey.php', 'icon' => 'bi-bar-chart-line', 'label' => 'Laporan Survei'],
+    ['href' => 'master_data.php', 'icon' => 'bi-database', 'label' => 'Master Data'],
+];
+?>
+
 <style>
+/* CSS Anda */
 .sidebar {
     height: 100vh;
     position: fixed;
@@ -15,12 +31,22 @@
     padding: 10px 15px;
     text-decoration: none;
     display: block;
+    transition: all 0.2s;
+    /* Tambahkan transisi agar hover lebih halus */
 }
 
+/* Aturan CSS untuk link aktif dan hover */
 .sidebar a:hover,
 .sidebar .active {
     background-color: #495057;
     color: white;
+}
+
+/* Pastikan nav-link di ul juga mengikuti properti hover/active */
+.nav-pills .nav-link.active,
+.nav-pills .nav-link:hover {
+    color: white;
+    background-color: #495057;
 }
 </style>
 
@@ -30,31 +56,19 @@
         <small class="text-secondary">Administrator Mode</small>
     </div>
     <ul class="nav nav-pills flex-column mb-auto">
+        <?php foreach ($menu_items as $item): ?>
+        <?php 
+            // Cek apakah href item sama dengan halaman yang sedang dibuka
+            $is_active = ($item['href'] === $current_page) ? 'active' : ''; 
+            $aria_current = ($is_active) ? 'aria-current="page"' : '';
+        ?>
         <li class="nav-item">
-            <a href="index.php" class="nav-link active" aria-current="page">
-                <i class="bi bi-speedometer2 me-2"></i> Dashboard
+            <a href="<?php echo $item['href']; ?>" class="nav-link <?php echo $is_active; ?>"
+                <?php echo $aria_current; ?>>
+                <i class="bi <?php echo $item['icon']; ?> me-2"></i> <?php echo $item['label']; ?>
             </a>
         </li>
-        <li>
-            <a href="kelola-kendaraan.php" class="nav-link">
-                <i class="bi bi-truck me-2"></i> Kelola Kendaraan
-            </a>
-        </li>
-        <li>
-            <a href="kelola-petugas.php" class="nav-link">
-                <i class="bi bi-person-badge me-2"></i> Kelola Petugas
-            </a>
-        </li>
-        <li>
-            <a href="laporan_survey.php" class="nav-link">
-                <i class="bi bi-bar-chart-line me-2"></i> Laporan Survei
-            </a>
-        </li>
-        <li>
-            <a href="master_data.php" class="nav-link">
-                <i class="bi bi-database me-2"></i> Master Data
-            </a>
-        </li>
+        <?php endforeach; ?>
     </ul>
     <div class="mt-auto p-3 border-top">
         <a href="../logout.php" class="btn btn-outline-danger w-100">
