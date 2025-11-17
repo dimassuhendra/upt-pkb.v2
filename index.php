@@ -179,7 +179,7 @@ function createRatingInput($name, $label) {
     <div class="survey-container">
         <div class="card shadow-lg">
             <div class="card-header card-header-custom text-center py-4">
-                <h3 class="mb-1"><i class="bi bi-person-heart me-2"></i> Survey Tidak Puas Pelanggan</h3>
+                <h3 class="mb-1"><i class="bi bi-person-heart me-2"></i> Survey Kepuasan Pelanggan</h3>
                 <p class="lead mb-0">UPT Pengujian Kendaraan Bermotor</p>
             </div>
             <div class="card-body p-4 p-md-5">
