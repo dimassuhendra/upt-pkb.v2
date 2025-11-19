@@ -52,9 +52,11 @@ body {
  }
 
 .title-block {
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
     text-align: center;
-    padding: 10px 0;
-    margin-bottom: 20px;
+    height: 100%;
 }
 
 .title-block h1 {
@@ -187,8 +189,8 @@ body {
 
         <div class="title-block">
             <h1>PEMERINTAH KOTA BANDAR LAMPUNG</h1>
-            <h2>DINAS PERHUBUNGAN</h2>
-            <p class="address">JL. BASUKI RAHMAT NO. 34, SUMUR PUTRI, TLK BETUNG UTARA, KOTA BANDAR LAMPUNG, LAMPUNG 35211</p>
+            <h2 class="mt-3">DINAS PERHUBUNGAN</h2>
+            <p class="address mt-3">JL. BASUKI RAHMAT NO. 34, SUMUR PUTRI, TLK BETUNG UTARA, KOTA BANDAR LAMPUNG, LAMPUNG 35211</p>
         </div>
 
         <div class="logo-right pe-1">
