@@ -107,7 +107,7 @@ body {
 
 /* Penampung Login di Tengah */
 .login-container {
-    padding-top: 120px; /* Jarak dari atas */
+    padding-top: 90px; /* Jarak dari atas */
     display: flex;
     justify-content: center;
     align-items: center;
