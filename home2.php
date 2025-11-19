@@ -149,7 +149,7 @@
             align-items: center;
             justify-content: center;
             border-radius: 25px 25px 0 0;
-            width: 600px;
+            width: 500px;
         }
 
         .login-header .user-icon {
@@ -227,7 +227,7 @@
             border-radius: 30px;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
             text-align: center;
-            width: 600px;
+            width: 500px;
             max-width: 90%;
             display: flex;
             flex-direction: column;
