@@ -193,7 +193,7 @@ body {
             <p class="address mt-3">JL. BASUKI RAHMAT NO. 34, SUMUR PUTRI, TLK BETUNG UTARA, KOTA BANDAR LAMPUNG, LAMPUNG 35211</p>
         </div>
 
-        <div class="logo-right pe-1">
+        <div class="logo-right pe-1 mb-2">
             <img src="assets/img/dishub.png" alt="Logo Kanan Dishub">
         </div>
     </div>
