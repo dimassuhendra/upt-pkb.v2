@@ -45,7 +45,6 @@ body {
 .title-block {
     text-align: center;
     padding: 10px 0;
-    border-bottom: 3px solid #000; /* Garis tebal di bawah kop */
     margin-bottom: 20px;
 }
 
