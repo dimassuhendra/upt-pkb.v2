@@ -22,50 +22,69 @@
         }
 
         /* Penampung Header */
+        /* Penampung Header */
         .header-container {
             width: 100%;
-            background: linear-gradient(to right, #ffecd2, #250142 30%, #250142 70%, #ffecd2);   
+            /* Menggunakan background gradien biru tua seperti pada gambar */
+            background: linear-gradient(to right, #ffecd2, #250142 30%, #250142 70%, #ffecd2);
             color: white;
-            padding: 10px 20px;
+            padding-top: 10px;
+            padding-left: 20px;
+            padding-right: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 5px solid #ffcc00;
+            /* Garis kuning di bawah header */
         }
 
         /* Logo */
-        .logo-left img, .logo-right img {
-            width: 80px; 
+        .logo-left img {
+            width: 100px;
+            /* Sesuaikan ukuran logo */
             height: auto;
+            padding: 10px 0;
             display: block;
         }
-        
-        /* Gambar Placeholder disesuaikan ukurannya */
-        .logo-left img {
-            width: 70px; 
+
+        .logo-right img {
+            width: 100px;
+            /* Sesuaikan ukuran logo */
+            height: auto;
+            padding: 10px 0;
+            display: block;
         }
 
-        /* Judul Tengah */
         .title-block {
+            display: flex;
+            flex-direction: column;
+            align-items: space-between;
             text-align: center;
-            flex-grow: 1;
-            padding: 0 20px;
+            height: 100%;
         }
 
         .title-block h1 {
             font-size: 20px;
-            margin: 0 0 5px 0;
+            font-weight: 520;
+            text-transform: uppercase;
         }
 
         .title-block h2 {
-            font-size: 16px;
-            margin: 0 0 5px 0;
-            font-weight: bold;
+            font-size: 31px;
+            /* Ukuran lebih besar dari H1 */
+            font-weight: 800;
+            /* Paling Tebal */
+            text-transform: uppercase;
+            letter-spacing: 3.1px;
+            padding-bottom: 2px;
+            display: inline-block;
+            /* Agar garis bawah hanya sepanjang tulisan */
         }
 
         .title-block .address {
-            font-size: 10px;
-            margin: 0;
+            font-size: 11px;
+            font-weight: normal;
+            font-family: 'Times New Roman', Times, serif, sans-serif;
         }
 
         /* Info Bar (Baris Waktu, Kontak, dll) */
@@ -210,18 +229,19 @@
 <body>
     
     <div class="header-container">
-        <div class="logo-left ps-3">
-            <img src="../assets/img/bandar-lampung.png" alt="Logo Kota Bandar Lampung">
+        <div class="logo-left ps-1 mb-2">
+            <img src="assets/img/bandar-lampung.png" alt="Logo Kota Bandar Lampung">
         </div>
 
-        <div class="title-block">
+        <div class="title-block mt-1">
             <h1>PEMERINTAH KOTA BANDAR LAMPUNG</h1>
-            <h2>DINAS PERHUBUNGAN</h2>
-            <p class="address">JL. BASUKI RAHMAT NO. 34, SUMUR PUTRI, TLK BETUNG UTARA, KOTA BANDAR LAMPUNG, LAMPUNG 35211</p>
+            <h2 class="mt-1">DINAS PERHUBUNGAN</h2>
+            <p class="address mt-1">JL. BASUKI RAHMAT NO. 34, SUMUR PUTRI, TLK BETUNG UTARA, KOTA BANDAR LAMPUNG,
+                LAMPUNG 35211</p>
         </div>
 
-        <div class="logo-right pe-3">
-            <img src="../assets/img/dishub.png" alt="Logo Kanan Dishub">
+        <div class="logo-right pe-1 mb-2">
+            <img src="assets/img/dishub.png" alt="Logo Kanan Dishub">
         </div>
     </div>
     
