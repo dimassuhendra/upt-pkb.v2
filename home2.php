@@ -72,7 +72,7 @@ body {
     font-size: 31px; /* Ukuran lebih besar dari H1 */
     font-weight: 800; /* Paling Tebal */
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 3.1px;
     /* color: #0056b3; Warna Biru untuk menarik perhatian */
     /* Garis bawah ganda untuk penekanan ekstra */
     /* border-bottom: 2px double #0056b3;  */
