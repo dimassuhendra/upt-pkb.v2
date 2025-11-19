@@ -188,7 +188,7 @@ body {
         </div>
 
         <div class="title-block">
-            <h1 class="mb-1">PEMERINTAH KOTA BANDAR LAMPUNG</h1>
+            <h1>PEMERINTAH KOTA BANDAR LAMPUNG</h1>
             <h2 class="mt-3 mb-1">DINAS PERHUBUNGAN</h2>
             <p class="address mt-3">JL. BASUKI RAHMAT NO. 34, SUMUR PUTRI, TLK BETUNG UTARA, KOTA BANDAR LAMPUNG, LAMPUNG 35211</p>
         </div>
