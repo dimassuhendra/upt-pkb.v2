@@ -183,7 +183,7 @@ body {
 </head>
 <body>
     <div class="header-container">
-        <div class="logo-left ps-1">
+        <div class="logo-left ps-1 mb-2">
             <img src="assets/img/bandar-lampung.png" alt="Logo Kota Bandar Lampung">
         </div>
 
