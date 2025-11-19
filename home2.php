@@ -27,7 +27,9 @@ body {
     /* Menggunakan background gradien biru tua seperti pada gambar */
     background: linear-gradient(to right, #ffecd2, #250142 30%, #250142 70%, #ffecd2);   
     color: white;
-    padding: 10px 20px;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     display: flex;
     justify-content: space-between;
     align-items: self-start;
