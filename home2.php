@@ -163,7 +163,7 @@ body {
 </head>
 <body>
     <div class="header-container">
-        <div class="logo-left ps-2">
+        <div class="logo-left ps-1">
             <img src="assets/img/bandar-lampung.png" alt="Logo Kota Bandar Lampung">
         </div>
 
@@ -173,7 +173,7 @@ body {
             <p class="address">JL. BASUKI RAHMAT NO. 34, SUMUR PUTRI, TLK BETUNG UTARA, KOTA BANDAR LAMPUNG, LAMPUNG 35211</p>
         </div>
 
-        <div class="logo-right pe-2">
+        <div class="logo-right pe-1">
             <img src="assets/img/dishub.png" alt="Logo Kanan Dishub">
         </div>
     </div>
