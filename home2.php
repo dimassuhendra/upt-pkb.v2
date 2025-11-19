@@ -20,7 +20,7 @@
             margin: 0;
             padding: 0;
             /* Warna latar belakang body diambil dari gambar */
-            background-color: #ECE9D8;
+            background-color: #BDBDBD;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -127,7 +127,7 @@
 
         /* Form Login */
         .login-form {
-            width: 250px;
+            width: 400px;
             padding: 15px;
             background-color: #d1e2f7;
             /* Warna latar belakang form (biru muda) */
@@ -148,7 +148,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 10px 10px 0 0;
+            border-radius: 25px 25px 0 0;
+            width: 600px;
         }
 
         .login-header .user-icon {
@@ -223,11 +224,15 @@
 
         .login-box {
             background: #d1e2f7;
-            border-radius: 15px;
+            border-radius: 30px;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
             text-align: center;
-            width: 350px;
+            width: 600px;
             max-width: 90%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .login-box h2 {
@@ -239,6 +244,7 @@
 
         .login-box form {
             margin: 20px 40px;
+            width: 50%;
         }
 
         .input-group {
@@ -354,9 +360,10 @@
     </div>
 
     <div class="login-container">
-        <div class="login-box">
+        <div class="login-box bg-white">
             <h2 class="login-header text-white">Form Login</h2>
-            <form action="proses/proses-login.php" method="POST" id="mainLoginForm"> <input type="hidden" name="role"
+            <form action="proses/proses-login.php" method="POST" id="mainLoginForm">
+                <input type="hidden" name="role"
                     id="inputRole" value="admin">
 
                 <div class="input-group">
