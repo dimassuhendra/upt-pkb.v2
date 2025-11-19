@@ -30,7 +30,7 @@ body {
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: self-start;
     border-bottom: 5px solid #ffcc00; /* Garis kuning di bawah header */
 }
 
@@ -38,30 +38,41 @@ body {
 .logo-left img, .logo-right img {
     width: 80px; /* Sesuaikan ukuran logo */
     height: auto;
+    padding: 10px 0;
     display: block;
 }
 
-/* Judul Tengah */
 .title-block {
     text-align: center;
-    flex-grow: 1; /* Agar mengambil ruang di tengah */
-    padding: 0 20px;
+    padding: 10px 0;
+    border-bottom: 3px solid #000; /* Garis tebal di bawah kop */
+    margin-bottom: 20px;
 }
 
 .title-block h1 {
-    font-size: 20px;
-    margin: 0 0 5px 0;
+    font-size: 18px;
+    margin: 0;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
+/* --- Penekanan di Sini --- */
 .title-block h2 {
-    font-size: 16px;
-    margin: 0 0 5px 0;
-    font-weight: bold;
+    font-size: 28px; /* Ukuran lebih besar dari H1 */
+    margin: 0;
+    font-weight: 800; /* Paling Tebal */
+    text-transform: uppercase;
+    /* color: #0056b3; Warna Biru untuk menarik perhatian */
+    /* Garis bawah ganda untuk penekanan ekstra */
+    /* border-bottom: 2px double #0056b3;  */
+    padding-bottom: 2px;
+    display: inline-block; /* Agar garis bawah hanya sepanjang tulisan */
 }
 
 .title-block .address {
-    font-size: 10px;
-    margin: 0;
+    font-size: 11px;
+    margin: 5px 0 0 0;
+    font-weight: normal;
 }
 
 /* Info Bar (Baris Waktu, Kontak, dll) */
@@ -170,7 +181,7 @@ body {
         <div class="title-block">
             <h1>PEMERINTAH KOTA BANDAR LAMPUNG</h1>
             <h2>DINAS PERHUBUNGAN</h2>
-            <p class="address">JL. BASUKI RAHMAT NO. 34, SUMUR PUTRI, TLK BETUNG UTARA, KOTA BANDAR LAMPUNG, LAMPUNG 35211</p>
+            <p class="address mt-3">JL. BASUKI RAHMAT NO. 34, SUMUR PUTRI, TLK BETUNG UTARA, KOTA BANDAR LAMPUNG, LAMPUNG 35211</p>
         </div>
 
         <div class="logo-right pe-1">
