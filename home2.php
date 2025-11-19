@@ -62,8 +62,8 @@ body {
 }
 
 .title-block h1 {
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 20px;
+    font-weight: 520;
     text-transform: uppercase;
 }
 
@@ -72,6 +72,7 @@ body {
     font-size: 31px; /* Ukuran lebih besar dari H1 */
     font-weight: 800; /* Paling Tebal */
     text-transform: uppercase;
+    letter-spacing: 3px;
     /* color: #0056b3; Warna Biru untuk menarik perhatian */
     /* Garis bawah ganda untuk penekanan ekstra */
     /* border-bottom: 2px double #0056b3;  */
