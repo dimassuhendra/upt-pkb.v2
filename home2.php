@@ -176,7 +176,7 @@ body {
 <body>
     <div class="header-container">
         <div class="logo-left ps-1">
-            <img src="assets/img/bandar-lampung.png" alt="Logo Kota Bandar Lampung">
+            <img src="assets/img/7.png" alt="Logo Kota Bandar Lampung">
         </div>
 
         <div class="title-block">
@@ -186,7 +186,7 @@ body {
         </div>
 
         <div class="logo-right pe-1">
-            <img src="assets/img/dishub.png" alt="Logo Kanan Dishub">
+            <img src="assets/img/6.png" alt="Logo Kanan Dishub">
         </div>
     </div>
     
