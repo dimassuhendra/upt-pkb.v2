@@ -18,12 +18,13 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            /* background-color: # */
         }
 
         /* Penampung Header */
         .header-container {
             width: 100%;
-            background: linear-gradient(to right, #ffecd2, #441D62ff 30%, #441D62ff 70%, #ffecd2);   
+            background: linear-gradient(to right, #ffecd2, #250142 30%, #250142 70%, #ffecd2);   
             color: white;
             padding: 10px 20px;
             display: flex;
