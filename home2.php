@@ -202,8 +202,14 @@ body {
     <div class="info-bar bg-black">
         <marquee>
             <span class="version">SIMPKB 6.9 - 24062020 | <?php setlocale(LC_TIME, 'id_ID', 'id_ID.utf8', 'id_ID.UTF-8', 'ind'); $tanggal_indonesia = strftime('%A, %e %B %Y'); echo $tanggal_indonesia;?></span>
-        </marquee>
-        <marquee>
+            
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
             <span class="contact">karta cp Edy Susanto 08122797823</span>
         </marquee>
     </div>
@@ -211,7 +217,7 @@ body {
     <div class="login-container">
         <form action="proses/proses-login.php" method="POST" id="mainLoginForm" class="login-form">
             <div class="login-header">
-                <img src="x.jpg" alt="User Login Icon" class="user-icon">
+                <img src="assets/img/8.png" alt="User Login Icon" class="user-icon">
                 User Log-In
             </div>
 
