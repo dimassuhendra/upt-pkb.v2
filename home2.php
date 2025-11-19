@@ -69,7 +69,7 @@ body {
 /* --- Penekanan di Sini --- */
 .title-block h2 {
     font-size: 28px; /* Ukuran lebih besar dari H1 */
-    margin: 0;
+    margin-top: 1rem;
     font-weight: 800; /* Paling Tebal */
     text-transform: uppercase;
     /* color: #0056b3; Warna Biru untuk menarik perhatian */
@@ -81,6 +81,7 @@ body {
 
 .title-block .address {
     font-size: 11px;
+    margin-top: 1rem;
     font-weight: normal;
 }
 
@@ -189,8 +190,8 @@ body {
 
         <div class="title-block">
             <h1>PEMERINTAH KOTA BANDAR LAMPUNG</h1>
-            <h2 class="mt-3 mb-1">DINAS PERHUBUNGAN</h2>
-            <p class="address mt-3">JL. BASUKI RAHMAT NO. 34, SUMUR PUTRI, TLK BETUNG UTARA, KOTA BANDAR LAMPUNG, LAMPUNG 35211</p>
+            <h2>DINAS PERHUBUNGAN</h2>
+            <p class="address">JL. BASUKI RAHMAT NO. 34, SUMUR PUTRI, TLK BETUNG UTARA, KOTA BANDAR LAMPUNG, LAMPUNG 35211</p>
         </div>
 
         <div class="logo-right pe-1 mb-2">
