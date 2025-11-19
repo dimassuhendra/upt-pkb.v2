@@ -38,7 +38,7 @@ body {
 
 /* Logo */
 .logo-left img {
-    width: 80px; /* Sesuaikan ukuran logo */
+    width: 90px; /* Sesuaikan ukuran logo */
     height: auto;
     padding: 10px 0;
     display: block;
