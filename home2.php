@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Styling Dasar */
 body {
@@ -67,15 +68,11 @@ body {
     text-transform: uppercase;
 }
 
-/* --- Penekanan di Sini --- */
 .title-block h2 {
     font-size: 31px; /* Ukuran lebih besar dari H1 */
     font-weight: 800; /* Paling Tebal */
     text-transform: uppercase;
     letter-spacing: 3.1px;
-    /* color: #0056b3; Warna Biru untuk menarik perhatian */
-    /* Garis bawah ganda untuk penekanan ekstra */
-    /* border-bottom: 2px double #0056b3;  */
     padding-bottom: 2px;
     display: inline-block; /* Agar garis bawah hanya sepanjang tulisan */
 }
@@ -83,6 +80,7 @@ body {
 .title-block .address {
     font-size: 11px;
     font-weight: normal;
+    font-family: 'Times New Roman', Times, serif, sans-serif;
 }
 
 /* Info Bar (Baris Waktu, Kontak, dll) */
@@ -184,6 +182,114 @@ body {
 .login-button:hover {
     background-color: #0056b3;
 }
+
+/* NEw Style */
+.body-login {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); /* Gradien Ungu-Biru Pucat */
+    background-size: cover;
+    color: #424242;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.login-box {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 350px;
+    max-width: 90%;
+}
+
+.login-box h2 {
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: 600;
+    font-size: 28px;
+}
+
+.input-group {
+    margin-bottom: 25px;
+    text-align: left;
+    gap: 10px;
+}
+
+.input-group i {
+    /* left: 15px;
+    top: 50%;
+    transform: translateY(-50%); */
+    color: #9E9E9E;
+    font-size: 18px;
+}
+
+.input-group input {
+    width: calc(100% - 70px); /* Kurangi padding dan icon */
+    padding: 12px 20px 12px 50px;
+    border: none;
+    border-bottom: 2px solid #E0E0E0;
+    background: transparent;
+    font-size: 16px;
+    color: #424242;
+    transition: border-bottom-color 0.3s ease;
+}
+
+.input-group input:focus {
+    border-bottom-color: #008080; /* Teal gelap untuk fokus */
+    outline: none;
+}
+
+.input-group input::placeholder {
+    color: #BDBDBD;
+}
+
+.login-button {
+    width: 100%;
+    padding: 15px;
+    background: #008080; /* Teal gelap */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    margin-top: 20px;
+}
+
+.login-button:hover {
+    background: #006A6A;
+    transform: translateY(-2px);
+}
+
+.links {
+    margin-top: 25px;
+    font-size: 14px;
+}
+
+.links a {
+    color: #008080; /* Teal gelap */
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.links a:hover {
+    text-decoration: underline;
+    color: #006A6A;
+}
     </style>
 </head>
 <body>
@@ -219,6 +325,27 @@ body {
     </div>
 
     <div class="login-container">
+        <div class="login-box">
+            <h2>Login</h2>
+            <form>
+                <div class="input-group d-flex align-items-center justify-content-center">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Username or Email" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="login-button">LOG IN</button>
+                <div class="links">
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                    <a href="#" class="sign-up">Sign Up Now</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- <div class="login-container">
         <form action="proses/proses-login.php" method="POST" id="mainLoginForm" class="login-form">
             <div class="login-header">
                 <img src="assets/img/8.png" alt="User Login Icon" class="user-icon">
@@ -237,7 +364,7 @@ body {
             </div>
             <button type="submit" class="login-button" id="submitButton">Login</button>
         </form>
-    </div>
+    </div> -->
 
       <script>
         document.addEventListener('DOMContentLoaded', function() {
