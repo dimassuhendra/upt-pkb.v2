@@ -107,7 +107,7 @@ body {
 
 /* Penampung Login di Tengah */
 .login-container {
-    padding-top: 80px; /* Jarak dari atas */
+    padding-top: 70px; /* Jarak dari atas */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -165,7 +165,6 @@ body {
     border: 1px solid #999;
 }
 
-/* Tombol Login */
 .login-button {
     background-color: #007bff; /* Warna biru */
     color: white;
