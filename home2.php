@@ -107,7 +107,7 @@ body {
 
 /* Penampung Login di Tengah */
 .login-container {
-    padding-top: 90px; /* Jarak dari atas */
+    padding-top: 80px; /* Jarak dari atas */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -116,7 +116,7 @@ body {
 
 /* Form Login */
 .login-form {
-    width: 300px; /* Ukuran form login */
+    width: 250px; /* Ukuran form login */
     padding: 15px;
     background-color: #d1e2f7; /* Warna latar belakang form (biru muda) */
     border: 1px solid #336699;
@@ -304,7 +304,7 @@ body {
 
         <div class="title-block mt-1">
             <h1>PEMERINTAH KOTA BANDAR LAMPUNG</h1>
-            <h2 class="mt-1">DINAS PERHUBUNGAN</h2>
+            <h2 class="mt-1">DINAS  PERHUBUNGAN</h2>
             <p class="address mt-1">JL. BASUKI RAHMAT NO. 34, SUMUR PUTRI, TLK BETUNG UTARA, KOTA BANDAR LAMPUNG, LAMPUNG 35211</p>
         </div>
 
