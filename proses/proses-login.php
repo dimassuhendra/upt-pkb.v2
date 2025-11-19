@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validasi peran
     if ($role != 'admin' && $role != 'petugas') {
         $_SESSION['login_error'] = "Peran tidak valid.";
-        header("location: ../index.php");
+        header("location: ../home.php");
         exit;
     }
 
@@ -69,10 +69,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         // ===============================================
                         if ($role == 'admin') {
                             // Dari proses/ ke admin/index.php
-                            header("location: ../admin/index.php"); 
+                            header("location: ../admin/index2.php"); 
                         } else { // petugas
                             // Dari proses/ ke petugas/index.php
-                            header("location: ../petugas/index.php");
+                            header("location: ../petugas/home.php");
                         }
                         exit;
                         
@@ -93,12 +93,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
     // Redirect kembali ke halaman index.php jika verifikasi gagal
-    header("location: ../index.php");
+    header("location: ../home.php");
     exit;
     
 } else {
     // Jika diakses tanpa metode POST, redirect ke index
-    header("location: ../index.php");
+    header("location: ../home.php");
     exit;
 }
 ?>

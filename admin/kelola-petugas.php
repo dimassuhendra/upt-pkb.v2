@@ -83,22 +83,16 @@ try {
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-    /* DEFINISI WARNA HIJAU UNTUK NUANSA TEMA */
+    /* 1. Atur Font Lato dan Custom Green Theme */
     :root {
-        /* Warna Dasar Hijau */
-        --bs-green-main: #198754;
-        /* Mirip Bootstrap Success */
-        --bs-green-vibrant: #20c997;
-        /* Untuk Detail/Info */
-        --bs-green-soft: #95d5b2;
-        /* Untuk Edit/Warning */
-        --bs-green-text: #0f5132;
-        --bs-green-bg: #d1e7dd;
+        --bs-success-dark: #0F6D38;
+        /* Custom Dark Green for Header */
+        --bs-success-light: #198754;
+        /* Standard Bootstrap Success */
     }
 
     body {
         font-family: 'Lato', sans-serif;
-        /* APLIKASI FONT LATO */
     }
 
     .content {
@@ -106,64 +100,36 @@ try {
         padding: 20px;
     }
 
-    /* Kustomisasi Warna untuk Nuansa Hijau */
-
-    /* 1. Warna Utama (Primary): Diubah ke Hijau */
-    .btn-outline-primary {
-        --bs-btn-color: var(--bs-green-main);
-        --bs-btn-border-color: var(--bs-green-main);
-        --bs-btn-hover-bg: var(--bs-green-main);
-        --bs-btn-hover-border-color: var(--bs-green-main);
-        --bs-btn-active-bg: var(--bs-green-dark);
-        --bs-btn-active-border-color: var(--bs-green-dark);
-        color: var(--bs-green-main);
+    .status-badge {
+        min-width: 100px;
     }
 
-    .table-primary {
-        /* Header Tabel */
-        --bs-table-bg: var(--bs-green-bg);
-        --bs-table-border-color: #badbcc;
-        color: var(--bs-green-text);
-        border-color: var(--bs-green-text);
+    /* Kustomisasi Header Tabel (Agar lebih gelap dari success biasa) */
+    .table-success-dark {
+        --bs-table-bg: var(--bs-success-dark);
+        --bs-table-color: white;
+        --bs-table-border-color: var(--bs-success-dark);
+        border-color: var(--bs-success-dark);
     }
 
-    .text-primary {
-        color: var(--bs-green-main) !important;
+    /* Kustomisasi Heading Warna Hijau */
+    .content h2 {
+        color: var(--bs-success-dark);
     }
 
-    /* 2. Warna Info (Detail): Diubah ke Hijau Lebih Terang */
-    .bg-info {
-        background-color: var(--bs-green-vibrant) !important;
-        color: white !important;
+    /* Kustomisasi Pagination (Menggunakan warna hijau) */
+    .pagination .page-item.active .page-link {
+        background-color: var(--bs-success-light);
+        border-color: var(--bs-success-light);
     }
 
-    .btn-info {
-        background-color: var(--bs-green-vibrant) !important;
-        border-color: var(--bs-green-vibrant);
-        color: white !important;
+    .pagination .page-link {
+        color: var(--bs-success-light);
     }
 
-    .text-info {
-        color: var(--bs-green-vibrant) !important;
-    }
-
-    /* 3. Warna Warning (Edit): Diubah ke Hijau yang Berbeda (Olive Green) untuk Kontras */
-    .bg-warning {
-        background-color: var(--bs-green-soft) !important;
-        color: #333 !important;
-        /* Teks gelap agar terbaca */
-    }
-
-    .btn-warning {
-        background-color: var(--bs-green-soft) !important;
-        border-color: var(--bs-green-soft);
-        color: #333 !important;
-        /* Teks gelap agar terbaca */
-    }
-
-    .text-warning {
-        /* Untuk spinner loading edit */
-        color: var(--bs-green-soft) !important;
+    /* Kustomisasi Spinner di Modal Detail */
+    #detail-modal-loader .spinner-border {
+        color: var(--bs-success-light) !important;
     }
     </style>
 </head>

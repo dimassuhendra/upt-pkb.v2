@@ -28,5 +28,5 @@ session_destroy();
 
 // 5. REDIRECT PENGGUNA KE HALAMAN LOGIN
 // Ganti 'login.php' dengan nama file halaman login Anda.
-header('Location: home.php');
+header('Location: home2.php');
 exit();
