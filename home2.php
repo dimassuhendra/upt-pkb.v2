@@ -32,7 +32,7 @@ body {
     padding-right: 20px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: self-start;
     border-bottom: 5px solid #ffcc00; /* Garis kuning di bawah header */
 }
 
