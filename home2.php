@@ -85,7 +85,6 @@ body {
 /* Info Bar (Baris Waktu, Kontak, dll) */
 .info-bar {
     width: 100%;
-    background-color: #dddddd; /* Warna abu-abu terang */
     font-size: 12px;
     padding: 5px 20px;
     box-sizing: border-box;
@@ -96,8 +95,12 @@ body {
     color: #333;
 }
 
+.info-bar .version {
+    color: aqua;
+}
 .info-bar .contact {
     font-weight: bold;
+    color: #ffcc00;
 }
 
 /* Penampung Login di Tengah */
@@ -196,9 +199,13 @@ body {
         </div>
     </div>
     
-    <div class="info-bar">
-        <span>SIMPKB 6.9 - 24062020 | <?php echo date('l, d-m-Y');?></span>
-        <span class="contact">karta cp Edy Susanto 08122797823</span>
+    <div class="info-bar bg-black">
+        <marquee>
+            <span class="version">SIMPKB 6.9 - 24062020 | <?php setlocale(LC_TIME, 'id_ID', 'id_ID.utf8', 'id_ID.UTF-8', 'ind'); $tanggal_indonesia = strftime('%A, %e %B %Y'); echo $tanggal_indonesia;?></span>
+        </marquee>
+        <marquee>
+            <span class="contact">karta cp Edy Susanto 08122797823</span>
+        </marquee>
     </div>
 
     <div class="login-container">
