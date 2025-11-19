@@ -185,7 +185,7 @@ body {
             <img src="assets/img/bandar-lampung.png" alt="Logo Kota Bandar Lampung">
         </div>
 
-        <div class="title-block">
+        <div class="title-block mt-1">
             <h1>PEMERINTAH KOTA BANDAR LAMPUNG</h1>
             <h2 class="mt-1">DINAS PERHUBUNGAN</h2>
             <p class="address mt-1">JL. BASUKI RAHMAT NO. 34, SUMUR PUTRI, TLK BETUNG UTARA, KOTA BANDAR LAMPUNG, LAMPUNG 35211</p>
