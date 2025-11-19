@@ -86,7 +86,7 @@ body {
 .info-bar {
     width: 100%;
     font-size: 12px;
-    padding: 5px 20px;
+    padding: 5px 0;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
