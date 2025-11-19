@@ -107,9 +107,10 @@ body {
 
 /* Penampung Login di Tengah */
 .login-container {
-    padding-top: 50px; /* Jarak dari atas */
+    padding-top: 120px; /* Jarak dari atas */
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
 }
 
@@ -131,11 +132,10 @@ body {
     font-weight: bold;
     padding: 5px;
     font-size: 16px;
-    margin: -15px -15px 15px -15px; /* Mengisi lebar form */
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom: 2px solid #cc5500;
+    border-radius: 10px 10px 0 0;
 }
 
 .login-header .user-icon {
@@ -205,8 +205,7 @@ body {
 }
 
 .login-box {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 40px 30px;
+    background: #d1e2f7;
     border-radius: 15px;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -219,6 +218,9 @@ body {
     color: #333;
     font-weight: 600;
     font-size: 28px;
+}
+.login-box form {
+    margin: 20px 40px;
 }
 
 .input-group {
@@ -256,13 +258,13 @@ body {
 }
 
 .login-button {
-    width: 100%;
-    padding: 15px;
-    background: #008080; /* Teal gelap */
+    width: 70%;
+    padding: 10px;
+    background: #2492c2; /* Teal gelap */
     color: white;
     border: none;
-    border-radius: 8px;
-    font-size: 18px;
+    border-radius: 99px;
+    font-size: 15px;
     font-weight: 500;
     cursor: pointer;
     transition: background 0.3s ease, transform 0.2s ease;
@@ -276,7 +278,9 @@ body {
 
 .links {
     margin-top: 25px;
-    font-size: 14px;
+    font-size: 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .links a {
@@ -326,11 +330,12 @@ body {
 
     <div class="login-container">
         <div class="login-box">
-            <h2>Login</h2>
-            <form>
-                <div class="input-group d-flex align-items-center justify-content-center">
+            <h2 class="login-header text-white">Form Login</h2>
+            <form action="proses/proses-login.php" method="POST" id="mainLoginForm">                    <input type="hidden" name="role" id="inputRole" value="admin">
+
+                <div class="input-group">
                     <i class="fas fa-user"></i>
-                    <input type="text" placeholder="Username or Email" required>
+                    <input type="text" placeholder="Email" required>
                 </div>
                 <div class="input-group">
                     <i class="fas fa-lock"></i>
