@@ -85,6 +85,7 @@ body {
 /* Info Bar (Baris Waktu, Kontak, dll) */
 .info-bar {
     width: 100%;
+    font-family: 'Times New Roman', Times, serif, sans-serif;
     font-size: 12px;
     padding: 5px 0;
     box-sizing: border-box;
@@ -201,7 +202,7 @@ body {
     
     <div class="info-bar bg-black">
         <marquee>
-            <span class="version">SIMPKB 6.9 - 24062020 | <?php date_default_timezone_set('Asia/Jakarta'); setlocale(LC_TIME, 'id_ID', 'id_ID.utf8', 'id_ID.UTF-8', 'ind'); $tanggal_indonesia = strftime('%A , %e %B %Y, %H:%M'); echo $tanggal_indonesia;?></span>
+            <span class="version">SIMPKB 6.9 - 24062020 | <?php date_default_timezone_set('Asia/Jakarta'); setlocale(LC_TIME, 'id_ID', 'id_ID.utf8', 'id_ID.UTF-8', 'ind'); $tanggal_indonesia = strftime('%A , %e %B %Y , %H:%M WIB'); echo $tanggal_indonesia;?></span>
             
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
