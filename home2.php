@@ -368,13 +368,13 @@
 
                 <div class="input-group">
                     <i class="fas fa-user"></i>
-                    <input type="text" placeholder="Email" required>
+                    <input type="text" id="email" name="email" placeholder="Email" required>
                 </div>
                 <div class="input-group">
                     <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="Password" required>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
                 </div>
-                <button type="submit" class="login-button">LOG IN</button>
+                <button type="submit" class="login-button" id="submitButton">LOG IN</button>
                 <div class="links">
                     <a href="#" class="forgot-password">Forgot Password?</a>
                     <a href="#" class="sign-up">Sign Up Now</a>
