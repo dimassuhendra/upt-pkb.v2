@@ -69,7 +69,7 @@ body {
 
 /* --- Penekanan di Sini --- */
 .title-block h2 {
-    font-size: 28px; /* Ukuran lebih besar dari H1 */
+    font-size: 31px; /* Ukuran lebih besar dari H1 */
     font-weight: 800; /* Paling Tebal */
     text-transform: uppercase;
     /* color: #0056b3; Warna Biru untuk menarik perhatian */
