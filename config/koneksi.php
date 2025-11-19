@@ -7,7 +7,7 @@
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
-define('DB_NAME', 'db-upt');
+define('DB_NAME', 'db_upt');
 
 try {
     // Buat objek PDO
