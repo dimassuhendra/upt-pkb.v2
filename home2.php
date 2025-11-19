@@ -198,7 +198,7 @@ body {
     
     <div class="info-bar">
         <span>SIMPKB 6.9 - 24062020 | <?php echo date('l, d-m-Y');?></span>
-        <span class="contact">Karta zp Edir Susanto 08122787923</span>
+        <span class="contact">karta cp Edy Susanto 08122797823</span>
     </div>
 
     <div class="login-container">
