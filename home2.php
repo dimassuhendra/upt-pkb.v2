@@ -211,7 +211,7 @@ body {
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-            <span class="contact">Jakarta cp Edy Susanto 08122797823</span>
+            <span class="contact">Jakarta cp Edy Susanto : 08122797823</span>
         </marquee>
     </div>
 
