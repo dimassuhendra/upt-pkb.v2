@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pemerintah Kota Bandar Lampung - Dinas Perhubungan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <style>
         /* Styling Dasar */
 body {
@@ -160,7 +163,7 @@ body {
 </head>
 <body>
     <div class="header-container">
-        <div class="logo-left">
+        <div class="logo-left ps-3">
             <img src="assets/img/bandar-lampung.png" alt="Logo Kota Bandar Lampung">
         </div>
 
@@ -170,7 +173,7 @@ body {
             <p class="address">JL. BASUKI RAHMAT NO. 34, SUMUR PUTRI, TLK BETUNG UTARA, KOTA BANDAR LAMPUNG, LAMPUNG 35211</p>
         </div>
 
-        <div class="logo-right">
+        <div class="logo-right pe-3">
             <img src="assets/img/dishub.png" alt="Logo Kanan Dishub">
         </div>
     </div>
